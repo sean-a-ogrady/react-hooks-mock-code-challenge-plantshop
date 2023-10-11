@@ -13,7 +13,7 @@ function PlantPage() {
   useEffect(() => {
     fetch(url)
     .then(response => response.json())
-    .then(setPlantList);
+    .then(data => setPlantList(data.map(plant => {return {...plant, inStock: true}})));
   } ,[])
 
   function handleNewPlantSubmit(event) {
@@ -39,7 +39,7 @@ function PlantPage() {
     <main>
       <NewPlantForm newPlant={newPlant} setNewPlant={setNewPlant} handleNewPlantSubmit={handleNewPlantSubmit} />
       <Search />
-      <PlantList plants={filteredPlantList} />
+      <PlantList plants={filteredPlantList} setPlants={setPlantList} url={url} />
     </main>
   );
 }

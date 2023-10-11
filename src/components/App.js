@@ -5,7 +5,7 @@ import PlantPage from "./PlantPage";
 /*
 DELIVERABLES
 ------------
-- [ ] Load in all plants when app starts (GET)
+- [x] Load in all plants when app starts (GET)
 - [ ] Implement form to add new plants (POST)
 - [ ] Mark plant as "sold out" 
 - [ ] Search for plants by name, filter list

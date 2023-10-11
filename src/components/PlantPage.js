@@ -33,12 +33,18 @@ function PlantPage() {
     .then(data => setPlantList([...plantList, data]))
   }
 
-  const filteredPlantList = plantList; // COME BACK AND EDIT
+  const filteredPlantList = plantList.filter(plant => 
+    query.toLowerCase().split(" ").every(term => 
+      plant.name.toLowerCase().split(" ").some(word =>
+        word.startsWith(term)
+      )
+    )
+  )
 
   return (
     <main>
       <NewPlantForm newPlant={newPlant} setNewPlant={setNewPlant} handleNewPlantSubmit={handleNewPlantSubmit} />
-      <Search />
+      <Search query={query} setQuery={setQuery} />
       <PlantList plants={filteredPlantList} setPlants={setPlantList} url={url} />
     </main>
   );

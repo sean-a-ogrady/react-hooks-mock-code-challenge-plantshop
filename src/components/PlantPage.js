@@ -52,6 +52,15 @@ function PlantPage() {
       .then(data => setPlantList(plants => plants.map(plant => plant.id === data.id ? { ...plant, price: data.price } : plant)))
   }
 
+  function deletePlant() {
+    fetch(url + selectedPlant.id, {
+      method: "DELETE"
+    }) 
+    .then(response => response.json())
+    .then(data => setPlantList(plantList.filter(plant => plant.id !== selectedPlant.id)))
+    setShowPriceChangeForm(false);
+  }
+
   const filteredPlantList = plantList.filter(plant =>
     query.toLowerCase().split(" ").every(term =>
       plant.name.toLowerCase().split(" ").some(word =>
@@ -71,7 +80,10 @@ function PlantPage() {
         price={selectedPlant.price}
         newPrice={newPrice}
         setNewPrice={setNewPrice}
-        handlePriceChangeSubmit={handlePriceChangeSubmit} /> : null}
+        handlePriceChangeSubmit={handlePriceChangeSubmit}
+        deletePlant={deletePlant}
+        /> : null
+      }
       <Search query={query} setQuery={setQuery} />
       <PlantList
         plants={filteredPlantList}

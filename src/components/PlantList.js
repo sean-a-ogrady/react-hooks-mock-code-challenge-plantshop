@@ -1,7 +1,7 @@
 import React from "react";
 import PlantCard from "./PlantCard";
 
-function PlantList({ plants, setPlants, url }) {
+function PlantList({ plants, setPlants, url, selectedPlant, setSelectedPlant, setShowPriceChangeForm }) {
   function toggleInStock(id) {
     // Ran out of time trying to persist the plants change
     // Most convoluted way to do a simple non-persisting toggle
@@ -17,6 +17,9 @@ function PlantList({ plants, setPlants, url }) {
         price={plant.price}
         inStock={plant.inStock}
         toggleInStock={toggleInStock}
+        selectedPlant={selectedPlant}
+        setSelectedPlant={setSelectedPlant}
+        setShowPriceChangeForm={setShowPriceChangeForm}
       />)}</ul>
   );
 }

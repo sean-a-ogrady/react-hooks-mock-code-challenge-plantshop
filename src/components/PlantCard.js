@@ -1,9 +1,17 @@
 import React from "react";
 
-function PlantCard({id, name, image, price, inStock, toggleInStock}) {
+function PlantCard({ id, name, image, price, inStock, toggleInStock, selectedPlant, setSelectedPlant, setShowPriceChangeForm }) {
   return (
     <li className="card">
-      <img src={image} alt={name} />
+      <img src={image} alt={name} onClick={() => {
+        if (selectedPlant.id === id){
+          setShowPriceChangeForm(false);
+          setSelectedPlant({});
+        } else {
+          setShowPriceChangeForm(true);
+          setSelectedPlant({ id: id, name: name, image: image, price: price, inStock: inStock })
+        }
+      }} />
       <h4>{name}</h4>
       <p>Price: {price}</p>
       {inStock ? (
